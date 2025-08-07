@@ -1,0 +1,51 @@
+---
+schemaVersion: 1.0.0
+name: "distributed-load-testing-with-jmeter"
+keywords:
+  # Declare a Keyword which runs the JMeter test Demo_JMeter.jmx
+  - JMeter:
+      name: 'JMeter test'
+      jmeterTestplan: Demo_JMeter.jmx
+plans:
+  - name: "JMeter - Load Testing plan"
+    categories:
+      - "Load Testing"
+    # The agents (workers) are automatically determined and provisioned upon execution
+    agents: auto_detect
+    root:
+      testScenario:
+        children:
+          # Declare a ThreadGroup that distributes the execution of the Keyword (and thus the JMeter test)
+          - threadGroup:
+              # Distributes across 10 workers
+              users: 10
+              # Each worker executes the Keyword 5 times
+              iterations: 5
+              children:
+                - callKeyword:
+                    # Call the defined Keyword
+                    keyword: "JMeter test"
+                    inputs:
+                      # Pass the variable 'URL' to JMeter via Keyword Input
+                      - url: "opencart-prf.stepcloud.ch"
+  - name: "JMeter - Functional Test plan"
+    categories:
+      - "Functional Test"
+    # The agents (workers) are automatically determined and provisioned upon execution
+    agents: auto_detect
+    root:
+      testScenario:
+        children:
+          # Declare a ThreadGroup that distributes the execution of the Keyword (and thus the JMeter test)
+          - threadGroup:
+              # Distributes across a single worker 
+              users: 1
+              # Each worker executes the Keyword once
+              iterations: 1
+              children:
+                - callKeyword:
+                    # Call the defined Keyword
+                    keyword: "JMeter test"
+                    inputs:
+                      # Pass the variable 'URL' to JMeter via Keyword Input
+                      - url: "opencart-prf.stepcloud.ch"
