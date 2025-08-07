@@ -7,9 +7,9 @@ keywords:
       name: 'JMeter test'
       jmeterTestplan: Demo_JMeter.jmx
 plans:
-  - name: "JMeter - Load Testing plan"
+  - name: "JMeter_Load_Testing_plan"
     categories:
-      - "Load Testing"
+      - "Load_Testing"
     # The agents (workers) are automatically determined and provisioned upon execution
     agents: auto_detect
     root:
@@ -28,9 +28,9 @@ plans:
                     inputs:
                       # Pass the variable 'URL' to JMeter via Keyword Input
                       - url: "opencart-prf.stepcloud.ch"
-  - name: "JMeter - Functional Test plan"
+  - name: "JMeter_Functional_Test_plan"
     categories:
-      - "Functional Test"
+      - "Functional_Test"
     # The agents (workers) are automatically determined and provisioned upon execution
     agents: auto_detect
     root:
