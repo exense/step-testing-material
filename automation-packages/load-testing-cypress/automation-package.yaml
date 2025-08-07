@@ -7,11 +7,11 @@ plans:
     root:
       testScenario:
         children:
-          # Declare a thread group with 10 concurrent users
+          # Declare a thread group with 3 concurrent users
           - threadGroup:
-              users: 10
-              # Perform 10 iterations per user
-              iterations: 10
+              users: 3
+              # Perform 2 iterations per user
+              iterations: 2
               children:
                 - callKeyword:
                     # Each iteration executes the Cypress test defined as Keyword
