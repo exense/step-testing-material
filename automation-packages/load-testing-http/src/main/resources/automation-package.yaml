@@ -2,7 +2,7 @@
 schemaVersion: 1.0.0
 name: "load-testing-http-automation-package"
 plans:
-  - name: "Http GET Test"
+  - name: "Http_GET_Test"
     categories:
     - "GET"
     root:
@@ -17,7 +17,7 @@ plans:
                     inputs:
                       - URL: "https://opencart-prf.stepcloud.ch/macbook"
                       - Method: "GET"
-  - name: "Http POST Test"
+  - name: "Http_POST_Test"
     categories:
     - "POST"
     root:
