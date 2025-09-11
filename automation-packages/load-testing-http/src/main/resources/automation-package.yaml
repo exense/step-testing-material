@@ -11,10 +11,26 @@ plans:
         iterations: 3
         children:
           - sequence:
-              nodeName: Add MacBook to cart
               children:
                 - callKeyword:
                     keyword: "HttpRequest"
                     inputs:
                       - URL: "https://opencart-prf.stepcloud.ch/macbook"
                       - Method: "GET"
+  - name: "Http POST Test"
+    categories:
+    - "POST"
+    root:
+      threadGroup:
+        users: 1
+        iterations: 3
+        children:
+        - sequence:
+            children:
+            - callKeyword:
+                keyword: "HttpRequest"
+                inputs:
+                - URL: "https://opencart-prf.stepcloud.ch/index.php?route=checkout%2Fcart%2Fadd"
+                - Method: "POST"
+                - FormData_quantity: "1"
+                - FormData_product_id: "43"
