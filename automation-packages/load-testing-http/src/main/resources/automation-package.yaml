@@ -1,0 +1,18 @@
+---
+schemaVersion: 1.0.0
+name: "load-testing-http-automation-package"
+plans:
+  - name: "Http Load Test"
+    root:
+      threadGroup:
+        users: 1
+        iterations: 3
+        children:
+          - sequence:
+              nodeName: Add MacBook to cart
+              children:
+                - callKeyword:
+                    keyword: "HttpRequest"
+                    inputs:
+                      - URL: "https://opencart-prf.stepcloud.ch/macbook"
+                      - Method: "GET"
