@@ -2,7 +2,9 @@
 schemaVersion: 1.0.0
 name: "load-testing-http-automation-package"
 plans:
-  - name: "Http Load Test"
+  - name: "Http GET Test"
+    categories:
+    - "GET"
     root:
       threadGroup:
         users: 1
