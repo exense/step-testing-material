@@ -48,12 +48,6 @@
         <step.version>2025.9.11-68c202f0c7bd1a26dae733e1</step.version>
         <junit.version>4.13.1</junit.version>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
-
-        <!-- !!! The base URL of your Step server !!! -->
-        <step.url>https://mycluster.stepcloud.ch/</step.url>
-        <!-- For Step EE, specify your Step token (in text format) and Step project name-->
-        <step.auth-token>eyJhbGciOiJIUzI1NiJ9.eyJ....</step.auth-token>
-        <step.step-project-name>Common</step.step-project-name>
         <step-library-kw.version>1.0.24</step-library-kw.version>
     </properties>
 
@@ -146,15 +140,6 @@
                         <id>execute-automation-package</id>
                         <phase>verify</phase>
                         <configuration>
-                            <url>${step.url}</url>
-                            <authToken>${step.auth-token}</authToken>
-                            <stepProjectName>${step.step-project-name}</stepProjectName>
-                            <ensureExecutionSuccess>true</ensureExecutionSuccess>
-                            <waitForExecution>true</waitForExecution>
-                            <executionResultTimeoutS>600</executionResultTimeoutS>
-                            <executionParameters>
-                                <env>TEST</env>
-                            </executionParameters>
                         </configuration>
                         <goals>
                             <goal>execute-automation-package</goal>
