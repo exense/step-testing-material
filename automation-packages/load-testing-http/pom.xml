@@ -116,6 +116,16 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <!-- kill the usual noise -->
+                    <showWarnings>false</showWarnings>
+                    <showDeprecation>false</showDeprecation>
+                    <verbose>false</verbose>
+                    <!-- also silence javac warnings -->
+                    <compilerArgs>
+                        <arg>-Xlint:none</arg>
+                    </compilerArgs>
+                </configuration>
             </plugin>
             <!-- Create an uber-jar which is the default packaging format for Step Keyword Packages -->
             <plugin>
@@ -128,6 +138,10 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <minimizeJar>false</minimizeJar>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
