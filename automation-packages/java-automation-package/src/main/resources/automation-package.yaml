@@ -1,0 +1,17 @@
+---
+version: 1.0.0
+name: "java-automation-package"
+plans:
+  - name: "Test Java Keyword with keyword library"
+    # Automatically determine and provision the agents (workers)
+    agents: auto_detect
+    root:
+      # Declare a thread group with 10 concurrent users
+      threadGroup:
+        users: 1
+        # Perform 100 iterations per user
+        iterations: 1
+        children:
+          - callKeyword:
+              # Each iteration executes the test defined as Keyword
+              keyword: "SimpleJavaKeyword"
