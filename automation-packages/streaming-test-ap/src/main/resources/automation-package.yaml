@@ -1,0 +1,106 @@
+---
+version: 1.1.1
+name: "streaming-test-ap"
+plans:
+  - name: "Streaming Uploads TC 01 - 5 PASS"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "StreamingUploadsTest"
+              inputs:
+                - attachmentsCount: 5
+                - attachmentSizeMin: 1000
+                - attachmentSizeMax: 10000
+                - productionTimeSecondsMin: 5
+                - productionTimeSecondsMax: 15
+                - sleepBetweenSecondsMin: 1
+                - sleepBetweenSecondsMax: 2
+
+  - name: "Streaming Uploads TC 02 - 1 BINARY"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "StreamingUploadsTest"
+              inputs:
+                - attachmentsCount: 1
+                - attachmentSizeMin: 1000
+                - attachmentSizeMax: 10000
+                - productionTimeSecondsMin: 1
+                - productionTimeSecondsMax: 10
+                - mimeType: "application/octet-stream"
+
+  - name: "Streaming Uploads TC 03 - 1 PASS, 1 FAIL, 1 FORGOT-FAIL"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "StreamingUploadsTest"
+              inputs:
+                - attachmentsCount: 3
+                - attachmentSizeMin: 10000
+                - attachmentSizeMax: 100000
+                - productionTimeSecondsMin: 15
+                - productionTimeSecondsMax: 45
+                - sleepBetweenSecondsMin: 0
+                - sleepBetweenSecondsMax: 0
+                - failingIndexes:
+                    - 1
+                - forgetToCompleteIndexes:
+                    - 2
+
+  - name: "Streaming Uploads TC 04 - Fail resource quota"
+    root:
+      testCase:
+        children:
+          - set:
+              nodeName: "Set maxBytesPerResource"
+              key: "reporting.attachments.streaming.quota.maxBytesPerResource"
+              value: "5000"
+          - callKeyword:
+              keyword: "StreamingUploadsTest"
+              inputs:
+                - attachmentsCount: 1
+                - attachmentSizeMin: 20000
+                - attachmentSizeMax: 20000
+                - productionTimeSecondsMin: 5
+                - productionTimeSecondsMax: 5
+
+  - name: "Streaming Uploads TC 05 - Fail execution quota"
+    root:
+      testCase:
+        children:
+          - set:
+              nodeName: "Set maxBytesPerExecution"
+              key: "reporting.attachments.streaming.quota.maxBytesPerExecution"
+              value: "25000"
+          - callKeyword:
+              keyword: "StreamingUploadsTest"
+              inputs:
+                - attachmentsCount: 2
+                - attachmentSizeMin: 20000
+                - attachmentSizeMax: 20000
+                - productionTimeSecondsMin: 5
+                - productionTimeSecondsMax: 5
+                - sleepBetweenSecondsMin: 10
+                - sleepBetweenSecondsMax: 10
+
+  - name: "Streaming Uploads TC 06 - Fail attachment count quota"
+    root:
+      testCase:
+        children:
+          - set:
+              nodeName: "Set maxResourcesPerExecution"
+              key: "reporting.attachments.streaming.quota.maxResourcesPerExecution"
+              value: "2"
+          - callKeyword:
+              keyword: "StreamingUploadsTest"
+              inputs:
+              - attachmentsCount: 3
+              - attachmentSizeMin: 20000
+              - attachmentSizeMax: 20000
+              - productionTimeSecondsMin: 5
+              - productionTimeSecondsMax: 5
+              - sleepBetweenSecondsMin: 0
+              - sleepBetweenSecondsMax: 0
