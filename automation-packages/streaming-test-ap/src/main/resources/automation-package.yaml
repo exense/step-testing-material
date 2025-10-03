@@ -104,3 +104,4 @@ plans:
               - productionTimeSecondsMax: 5
               - sleepBetweenSecondsMin: 0
               - sleepBetweenSecondsMax: 0
+agents: []
