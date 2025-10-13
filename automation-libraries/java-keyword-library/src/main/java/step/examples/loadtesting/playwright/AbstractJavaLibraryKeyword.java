@@ -4,7 +4,7 @@ import step.handlers.javahandler.AbstractKeyword;
 
 public class AbstractJavaLibraryKeyword extends AbstractKeyword {
 
-    protected String USING_LIB_VERSION="0.0.0-SNAPSHOT updated";
+    protected String USING_LIB_VERSION="0.0.0-SNAPSHOT updated 10/10 14h23";
 
 
 }
