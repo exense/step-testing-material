@@ -4,7 +4,7 @@ import step.handlers.javahandler.Keyword;
 
 public class JavaKeywords extends AbstractJavaLibraryKeyword {
 
-    public String AP_VERSION="0.0.0-SNAPSHOT updated 10/10 14h20";
+    public String AP_VERSION="0.0.0-SNAPSHOT updated 23/10 15h20";
 
     @Keyword
     public void SimpleJavaKeyword() {
