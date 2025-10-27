@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>ch.exense.step</groupId>
 			<artifactId>step-api-keyword</artifactId>
-			<version>2025.10.2-68de27108e322422c136a374</version>
+			<version>2025.10.27-68ff78d5965ede24cff1f8c3</version>
 			<scope>provided</scope>
 		</dependency>
 
