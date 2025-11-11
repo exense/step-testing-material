@@ -45,6 +45,8 @@
         <step-api.version>1.4.0</step-api.version>
         <junit.version>4.13.1</junit.version>
 
+        <step-version>0.0.0-SNAPSHOT</step-version>
+
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
@@ -54,8 +56,8 @@
         <!-- !!! The base URL of your Step server !!! -->
         <step.url>http://localhost:8080</step.url>
         <!-- For Step EE, specify your Step token (in text format) and Step project name-->
-        <step.auth-token>eyJhbGciOiJIUzI1NiJ9.eyJq...</step.auth-token>
-        <step.step-project-name>Common</step.step-project-name>
+        <step.auth-token>eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjZjc2OTU3NS02ODQ3LTQzN2ItOTBmYi04ZjBjY2Q4Y2FhZGUiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQyMDEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDEiLCJzdWIiOiJhZG1pbiIsIm5iZiI6MTc1ODIwMjE4MiwiaWF0IjoxNzU4MjAyMTgyLCJleHAiOjQ5MTE4MDIxODIsImlzTG9jYWxUb2tlbiI6dHJ1ZX0.eLUPQ3pWf9ukkcClXg_NqpxPjIbpZCi_2CLpYPQ_wN0</step.auth-token>
+        <step.step-project-name>CommonLibrary</step.step-project-name>
     </properties>
 
     <dependencyManagement>
@@ -105,7 +107,7 @@
                 <plugin>
                     <groupId>ch.exense.step</groupId>
                     <artifactId>step-maven-plugin</artifactId>
-                    <version>3.28.2</version>
+                    <version>${step-version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -137,6 +139,28 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>ch.exense.step</groupId>-->
+<!--                <artifactId>step-maven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>deploy-library</id>-->
+<!--                        <phase>integration-test</phase>-->
+<!--                        <configuration>-->
+<!--                            <url>${step.url}</url>-->
+<!--                            <authToken>${step.auth-token}</authToken>-->
+<!--                            <stepProjectName>${step.step-project-name}</stepProjectName>-->
+<!--&lt;!&ndash;                            <managedLibraryName>myCommonLib</managedLibraryName>&ndash;&gt;-->
+<!--                            <artifactGroupId>ch.exense.step.testing.libraries</artifactGroupId>-->
+<!--                            <artifactId>java-keyword-library</artifactId>-->
+<!--                            <artifactVersion>0.0.0-SNAPSHOT</artifactVersion>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>deploy-library</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>
