@@ -1,6 +1,11 @@
 ---
 version: 1.0.0
 name: "java-automation-package"
+keywords:
+  - GeneralScript:
+      name: "Groovy Keyword"
+      scriptLanguage: groovy
+      scriptFile: "groovy/keyword.groovy"
 plans:
   - name: "Test Java Keyword with keyword library"
     # Automatically determine and provision the agents (workers)
@@ -15,3 +20,5 @@ plans:
           - callKeyword:
               # Each iteration executes the test defined as Keyword
               keyword: "SimpleJavaKeyword"
+          - callKeyword:
+              keyword: "Groovy Keyword"
