@@ -1,5 +1,6 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import step.grid.io.AttachmentHelper;
 import step.handlers.javahandler.AbstractKeyword;
 import step.handlers.javahandler.Input;
 import step.handlers.javahandler.Keyword;
@@ -7,8 +8,11 @@ import step.reporting.LiveReporting;
 import step.streaming.client.upload.StreamingUpload;
 import step.streaming.common.StreamingResourceMetadata;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SplittableRandom;
@@ -59,6 +63,9 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
             @Input(name = "randomSeedNumber", defaultValue = "31337") String randomSeedNumber,
             @Input(name = "producerThreads", defaultValue = "2") int producerThreads)
             throws Exception {
+
+        ByteArrayOutputStream errorBytes = new ByteArrayOutputStream();
+        PrintWriter errorWriter = new PrintWriter(errorBytes);
 
         List<Path> files = new ArrayList<>();
         List<StreamingUpload> uploads = new ArrayList<>();
@@ -116,6 +123,10 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
                     uploads.add(upload);
                 } catch (Exception e) {
                     logger.error("Error starting upload", e);
+                    synchronized (errorWriter) {
+                        errorWriter.println("Error starting upload " + attachmentIndex);
+                        e.printStackTrace(errorWriter);
+                    }
                     continue;
                 }
 
@@ -124,9 +135,10 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
                         failAtByte, random.nextLong());
 
                 doneFutures.add(new CompletableFuture<>());
-                CompletableFuture<Void> future = producer.start();
-                producerFutures.add(future);
-                future.whenComplete((r, ex) -> {
+                CompletableFuture<Void> producerFuture = producer.start();
+                producerFutures.add(producerFuture);
+                producerFuture.whenComplete((r, ex) -> {
+                    logger.info("Producer {} completed, ok={}", index, ex==null);
                     if (ex == null) {
                         CompletableFuture.runAsync(() -> {
                             if (forgetToCompleteIndexes.contains(index)) {
@@ -134,7 +146,7 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
                             } else {
                                 logger.info("Completing upload {} normally", index);
                                 try {
-                                    var result = uploads.get(index).complete();
+                                    var result = uploads.get(index).complete(Duration.ofSeconds(60));
                                     logger.info("upload {} completed: {}", index, result);
                                 } catch (Exception e) {
                                     doneFutures.get(index).completeExceptionally(e);
@@ -144,6 +156,10 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
                         });
                     } else {
                         logger.warn("Upload {} failed: {}", index, ex.getMessage());
+                        synchronized (errorWriter) {
+                            errorWriter.println("Upload " + index +" failed: " + ex.getMessage());
+                            ex.printStackTrace(errorWriter);
+                        }
                         doneFutures.get(index).completeExceptionally(ex);
                     }
                 });
@@ -160,12 +176,16 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
                     doneFutures.get(i).join();
                 } catch (Exception throwable) {
                     logger.warn("upload {} failed: {}", i, throwable.getMessage());
+                    synchronized (errorWriter) {
+                        errorWriter.println("upload " + i + " failed: " + throwable.getMessage());
+                        throwable.printStackTrace(errorWriter);
+                    }
                     uploads.get(i).cancel(throwable);
                     if (output != null) {
                         String msg = null;
                         Throwable leaf = throwable;
                         while (leaf.getCause() != null) {
-                            leaf = throwable.getCause();
+                            leaf = leaf.getCause();
                         }
                         msg = leaf.getMessage();
                         if (msg == null) {
@@ -178,6 +198,10 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
             logger.info("all uploads completed");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
+            synchronized (errorWriter) {
+                errorWriter.println("Generic exception: " + e.getMessage());
+                e.printStackTrace(errorWriter);
+            }
         } finally {
             for (Path file : files) {
                 Files.deleteIfExists(file);
@@ -187,6 +211,16 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
             }
         }
         logger.info("Keyword execution finished");
+        synchronized (errorWriter) {
+            errorWriter.flush();
+            errorWriter.close();
+            byte[] bytes = errorBytes.toByteArray();
+            if (bytes.length > 0 && output != null) {
+                var att = AttachmentHelper.generateAttachmentFromByteArray(bytes, "kw-errors.txt", "text/plain");
+                output.addAttachment(att);
+                output.setBusinessError("At least one error was encountered");
+            }
+        }
     }
 
 
