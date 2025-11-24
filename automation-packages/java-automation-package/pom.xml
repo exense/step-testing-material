@@ -41,9 +41,10 @@
     </scm>
 
     <properties>
-        <lib.version>1.0.0</lib.version>
+        <lib.version>0.0.0-SNAPSHOT</lib.version>
+        <step.version>3.29.0</step.version>
 
-        <step-version>0.0.0-SNAPSHOT</step-version>
+<!--        <step-version>0.0.0-SNAPSHOT</step-version>-->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
@@ -77,8 +78,6 @@
             <version>${lib.version}</version>
             <scope>provided</scope>
         </dependency>
-
-
 
         <dependency>
             <groupId>junit</groupId>
@@ -128,7 +127,7 @@
                 <plugin>
                     <groupId>ch.exense.step</groupId>
                     <artifactId>step-maven-plugin</artifactId>
-                    <version>${step-version}</version>
+                    <version>${step.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -172,6 +171,7 @@
 <!--                            <url>${step.url}</url>-->
 <!--&lt;!&ndash;                            <authToken>${step.auth-token}</authToken>&ndash;&gt;-->
 <!--&lt;!&ndash;                            <stepProjectName>${step.step-project-name}</stepProjectName>&ndash;&gt;-->
+<!--                            <artifactType>jar</artifactType>-->
 <!--                            <ensureExecutionSuccess>true</ensureExecutionSuccess>-->
 <!--                            <waitForExecution>true</waitForExecution>-->
 <!--                            <executionResultTimeoutS>600</executionResultTimeoutS>-->
@@ -183,6 +183,12 @@
 <!--                                <artifactId>java-keyword-library</artifactId>-->
 <!--                                <version>0.0.0-SNAPSHOT</version>-->
 <!--                            </library>-->
+<!--                            <reports>-->
+<!--                                <report>-->
+<!--                                    <type>junit</type>-->
+<!--                                    <output>stdout</output>-->
+<!--                                </report>-->
+<!--                            </reports>-->
 <!--                        </configuration>-->
 <!--                        <goals>-->
 <!--                            <goal>execute-automation-package</goal>-->

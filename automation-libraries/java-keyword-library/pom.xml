@@ -41,8 +41,8 @@
     </scm>
 
     <properties>
-        <step.version>3.28.2</step.version>
-        <step-api.version>1.4.0</step-api.version>
+        <step.version>3.29.0</step.version>
+        <step-api.version>1.5.0</step-api.version>
         <junit.version>4.13.1</junit.version>
 
         <step-version>0.0.0-SNAPSHOT</step-version>
@@ -59,6 +59,25 @@
         <step.auth-token>eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjZjc2OTU3NS02ODQ3LTQzN2ItOTBmYi04ZjBjY2Q4Y2FhZGUiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQyMDEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDEiLCJzdWIiOiJhZG1pbiIsIm5iZiI6MTc1ODIwMjE4MiwiaWF0IjoxNzU4MjAyMTgyLCJleHAiOjQ5MTE4MDIxODIsImlzTG9jYWxUb2tlbiI6dHJ1ZX0.eLUPQ3pWf9ukkcClXg_NqpxPjIbpZCi_2CLpYPQ_wN0</step.auth-token>
         <step.step-project-name>CommonLibrary</step.step-project-name>
     </properties>
+
+    <repositories>
+        <!-- private nexus -->
+        <repository>
+            <id>nexus-exense</id>
+            <url>https://nexus-enterprise.exense.ch/repository/exense/</url>
+        </repository>
+        <repository>
+            <id>nexus-staging</id>
+            <url>https://nexus-enterprise-staging.exense.ch/repository/staging-maven/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus-staging</id>
+            <url>https://nexus-enterprise-staging.exense.ch/repository/staging-maven/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>
