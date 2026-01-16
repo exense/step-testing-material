@@ -45,7 +45,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <step.version>0.0.0-SNAPSHOT</step.version>
+        <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
         <junit.version>4.13.1</junit.version>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
         <step-library-kw.version>1.0.24</step-library-kw.version>
@@ -55,7 +55,7 @@
         <!-- staging nexus -->
         <repository>
             <id>nexus-staging</id>
-            <url>https://nexus-enterprise-staging.exense.ch/repository/staging-maven/</url>
+            <url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</url>
         </repository>
         <!-- private nexus -->
         <repository>
@@ -68,7 +68,7 @@
         <!-- staging nexus -->
         <pluginRepository>
             <id>nexus-staging</id>
-            <url>https://nexus-enterprise-staging.exense.ch/repository/staging-maven/</url>
+            <url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</url>
         </pluginRepository>
         <!-- private nexus -->
         <pluginRepository>
