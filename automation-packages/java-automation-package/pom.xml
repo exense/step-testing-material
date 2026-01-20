@@ -42,7 +42,7 @@
 
     <properties>
         <lib.version>0.0.0-SNAPSHOT</lib.version>
-        <step.version>3.29.0</step.version>
+        <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
 
 <!--        <step-version>0.0.0-SNAPSHOT</step-version>-->
         <maven.compiler.source>11</maven.compiler.source>
@@ -96,7 +96,7 @@
         <repository>
             <id>nexus-staging</id>
             <name>Nexus Release Repository</name>
-            <url>https://nexus-enterprise.exense.ch/repository/staging-maven/</url>
+            <url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</url>
         </repository>
     </distributionManagement>
 
@@ -108,14 +108,14 @@
         </repository>
         <repository>
             <id>nexus-staging</id>
-            <url>https://nexus-enterprise-staging.exense.ch/repository/staging-maven/</url>
+            <url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>nexus-staging</id>
-            <url>https://nexus-enterprise-staging.exense.ch/repository/staging-maven/</url>
+            <url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</url>
         </pluginRepository>
     </pluginRepositories>
 
