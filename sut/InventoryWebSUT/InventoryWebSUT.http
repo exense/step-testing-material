@@ -1,0 +1,6 @@
+@InventoryWebSUT_HostAddress = http://localhost:30001
+
+GET {{InventoryWebSUT_HostAddress}}/products/
+Accept: application/json
+
+###

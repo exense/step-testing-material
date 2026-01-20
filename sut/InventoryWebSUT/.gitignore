@@ -1,0 +1,44 @@
+## .NET Specific
+bin/
+obj/
+out/
+[Dd]ebug/
+[Rr]elease/
+
+## Tooling & Publishing
+*.publishproxy.json
+publish/
+# Ignore your single-file output specifically if you don't want it in git
+MySutApp
+
+## VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+## Visual Studio
+.vs/
+UserSecrets/
+*.user
+*.userosscache
+*.sln.docstates
+
+## Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## NuGet
+restore.config
+*.nupkg
+# Note: We do NOT ignore nuget.config if it contains your custom Nexus source
+# BUT we do ignore it if it contains clear-text passwords!
+# nuget.config 
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
