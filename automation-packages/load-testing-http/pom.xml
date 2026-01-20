@@ -48,8 +48,16 @@
         <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
         <junit.version>4.13.1</junit.version>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
-        <step-library-kw.version>1.0.24</step-library-kw.version>
+        <step-library-kw.version>0.0.0-MASTER-SNAPSHOT</step-library-kw.version>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</url>
+        </repository>
+    </distributionManagement>
 
     <repositories>
         <!-- staging nexus -->

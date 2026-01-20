@@ -40,9 +40,17 @@
         <url>https://github.com/exense/step-samples/</url>
     </scm>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
-        <step-api.version>1.4.0</step-api.version>
+        <step-api.version>1.5.0</step-api.version>
         <playwright.version>1.40.0</playwright.version>
         <junit.version>4.13.1</junit.version>
 

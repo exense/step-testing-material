@@ -41,7 +41,7 @@
     </scm>
 
     <properties>
-        <lib.version>1.0.0</lib.version>
+        <lib.version>0.0.0-MASTER-SNAPSHOT</lib.version>
         <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
