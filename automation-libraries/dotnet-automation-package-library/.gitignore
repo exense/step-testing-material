@@ -9,3 +9,4 @@ target/
 .project
 *.iml
 dependency-reduced-pom.xml
+*.dll
