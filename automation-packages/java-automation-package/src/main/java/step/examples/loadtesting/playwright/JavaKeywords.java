@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class JavaKeywords extends AbstractJavaLibraryKeyword {
 
-    public String AP_VERSION="0.0.0-SNAPSHOT updated 20/11 14h39";
+    public String AP_VERSION="0.0.0-MASTER-SNAPSHOT updated 20/11 14h39";
 
     @Keyword
     public void SimpleJavaKeyword() throws IOException {

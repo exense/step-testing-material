@@ -14,7 +14,7 @@
 
     <groupId>ch.exense.step.testing.libraries</groupId>
     <artifactId>java-automation-package</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.0-MASTER-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Step Library - Java Automation Package</name>
@@ -41,10 +41,10 @@
     </scm>
 
     <properties>
-        <lib.version>0.0.0-SNAPSHOT</lib.version>
+        <lib.version>0.0.0-MASTER-SNAPSHOT</lib.version>
         <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
 
-<!--        <step-version>0.0.0-SNAPSHOT</step-version>-->
+<!--        <step-version>0.0.0-MASTER-SNAPSHOT</step-version>-->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
@@ -181,7 +181,7 @@
 <!--                            <library>-->
 <!--                                <groupId>ch.exense.step.testing.libraries</groupId>-->
 <!--                                <artifactId>java-keyword-library</artifactId>-->
-<!--                                <version>0.0.0-SNAPSHOT</version>-->
+<!--                                <version>0.0.0-MASTER-SNAPSHOT</version>-->
 <!--                            </library>-->
 <!--                            <reports>-->
 <!--                                <report>-->
@@ -212,7 +212,7 @@
 <!--&lt;!&ndash;                            <library>&ndash;&gt;-->
 <!--&lt;!&ndash;&lt;!&ndash;                                <groupId>ch.exense.step.testing.libraries</groupId>&ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;&lt;!&ndash;                                <artifactId>java-keyword-library</artifactId>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                                <version>0.0.0-SNAPSHOT</version>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                <version>0.0.0-MASTER-SNAPSHOT</version>&ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;&lt;!&ndash;                                <path>C:\Dev\git\exense\ide\step-testing-super\step-testing-material\java-keyword-library-1.0.0.jar</path>&ndash;&gt;&ndash;&gt;-->
 <!--&lt;!&ndash;                                <managed>MyManagedLib</managed>&ndash;&gt;-->
 <!--&lt;!&ndash;                            </library>&ndash;&gt;-->

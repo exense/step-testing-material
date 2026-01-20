@@ -56,7 +56,7 @@ public class PlaywrightKeywords extends AbstractKeyword {
             page.locator("#button-guest").click();
             output.stopMeasure();
 
-            output.add("version", "0.0.0-SNAPSHOT-v5");
+            output.add("version", "0.0.0-MASTER-SNAPSHOT-v5");
         }
     }
 }
