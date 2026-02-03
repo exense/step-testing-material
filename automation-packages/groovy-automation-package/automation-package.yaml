@@ -1,0 +1,8 @@
+---
+version: 1.2.0
+name: "groovy-automation-package"
+keywords:
+  - GeneralScript:
+      name: "Groovy Keyword"
+      scriptLanguage: groovy
+      scriptFile: "keywords/keyword.groovy"
