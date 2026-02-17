@@ -1,0 +1,330 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ch.exense.step.testing.e2e</groupId>
+  <artifactId>maven-plugin-configuration</artifactId>
+  <version>0.0.0-MASTER-SNAPSHOT</version>
+  <name>Step Maven Plugin Configuration</name>
+
+  <properties>
+    <step-api.version>1.5.0</step-api.version>
+    <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
+    <junit.version>4.13.2</junit.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+
+    <step-os.url>https://stepos-master.stepcloud-test.ch</step-os.url>
+    <step-ee.url>https://stepee-master.stepcloud-test.ch</step-ee.url>
+    <step-ee.project>Common</step-ee.project>
+    <step-ee.token>REPLACE_ME</step-ee.token>
+
+    <ap.groupId>ch.exense.step.testing.e2e</ap.groupId>
+    <ap.artifactId>java-automation-package1</ap.artifactId>
+    <ap.version>0.0.0-MASTER-SNAPSHOT</ap.version>
+    <ap.classifier></ap.classifier>
+    <ap.type>jar</ap.type>
+
+    <lib.groupId>ch.exense.step.testing.e2e</lib.groupId>
+    <lib.artifactId>java-automation-library</lib.artifactId>
+    <lib.version>0.0.0-MASTER-SNAPSHOT</lib.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>ch.exense.step</groupId>
+      <artifactId>step-api-keyword</artifactId>
+      <version>${step-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>nexus-staging</id>
+      <url>https://nexus-enterprise.exense.ch/repository/staging-maven/</url>
+    </repository>
+  </repositories>
+  
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus-staging</id>
+      <url>https://nexus-enterprise.exense.ch/repository/staging-maven/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>ch.exense.step</groupId>
+          <artifactId>step-maven-plugin</artifactId>
+          <version>${step.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <!-- ============================================================ -->
+    <!-- execute-automation-package goal                               -->
+    <!-- ============================================================ -->
+
+    <!-- Execute AP on Step OS -->
+    <profile>
+      <id>execute-os</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>ch.exense.step</groupId>
+            <artifactId>step-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>execute-ap-on-step-os</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>execute-automation-package</goal>
+                </goals>
+                <configuration>
+                  <url>${step-os.url}</url>
+                  <artifactGroupId>${ap.groupId}</artifactGroupId>
+                  <artifactId>${ap.artifactId}</artifactId>
+                  <artifactVersion>${ap.version}</artifactVersion>
+                  <artifactClassifier>${ap.classifier}</artifactClassifier>
+                  <artifactType>${ap.type}</artifactType>
+                  <library>
+                    <groupId>${lib.groupId}</groupId>
+                    <artifactId>${lib.artifactId}</artifactId>
+                    <version>${lib.version}</version>
+                  </library>
+                  <executionParameters>
+                    <env>TEST</env>
+                  </executionParameters>
+                  <executionResultTimeoutS>300</executionResultTimeoutS>
+                  <waitForExecution>true</waitForExecution>
+                  <ensureExecutionSuccess>true</ensureExecutionSuccess>
+                  <wrapIntoTestSet>true</wrapIntoTestSet>
+                  <numberOfThreads>1</numberOfThreads>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Execute AP on Step EE -->
+    <profile>
+      <id>execute-ee</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>ch.exense.step</groupId>
+            <artifactId>step-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>execute-ap-on-step-ee</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>execute-automation-package</goal>
+                </goals>
+                <configuration>
+                  <url>${step-ee.url}</url>
+                  <authToken>${step-ee.token}</authToken>
+                  <stepProjectName>${step-ee.project}</stepProjectName>
+                  <artifactGroupId>${ap.groupId}</artifactGroupId>
+                  <artifactId>${ap.artifactId}</artifactId>
+                  <artifactVersion>${ap.version}</artifactVersion>
+                  <artifactClassifier>${ap.classifier}</artifactClassifier>
+                  <artifactType>${ap.type}</artifactType>
+                  <library>
+                    <groupId>${lib.groupId}</groupId>
+                    <artifactId>${lib.artifactId}</artifactId>
+                    <version>${lib.version}</version>
+                  </library>
+                  <executionParameters>
+                    <env>TEST</env>
+                  </executionParameters>
+                  <executionResultTimeoutS>300</executionResultTimeoutS>
+                  <waitForExecution>true</waitForExecution>
+                  <ensureExecutionSuccess>true</ensureExecutionSuccess>
+                  <wrapIntoTestSet>true</wrapIntoTestSet>
+                  <numberOfThreads>1</numberOfThreads>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>ch.exense.step-enterprise</groupId>
+                <artifactId>step-maven-plugin-ee-extensions</artifactId>
+                <version>${step.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- ============================================================ -->
+    <!-- deploy-automation-package goal                                -->
+    <!-- ============================================================ -->
+
+    <!-- Deploy AP to Step OS -->
+    <profile>
+      <id>deploy-ap-os</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>ch.exense.step</groupId>
+            <artifactId>step-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>deploy-ap-to-step-os</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>deploy-automation-package</goal>
+                </goals>
+                <configuration>
+                  <url>${step-os.url}</url>
+                  <artifactGroupId>${ap.groupId}</artifactGroupId>
+                  <artifactId>${ap.artifactId}</artifactId>
+                  <artifactVersion>${ap.version}</artifactVersion>
+                  <artifactClassifier>${ap.classifier}</artifactClassifier>
+                  <artifactType>${ap.type}</artifactType>
+                  <library>
+                    <groupId>${lib.groupId}</groupId>
+                    <artifactId>${lib.artifactId}</artifactId>
+                    <version>${lib.version}</version>
+                  </library>
+                  <async>false</async>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Deploy AP to Step EE -->
+    <profile>
+      <id>deploy-ap-ee</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>ch.exense.step</groupId>
+            <artifactId>step-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>deploy-ap-to-step-ee</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>deploy-automation-package</goal>
+                </goals>
+                <configuration>
+                  <url>${step-ee.url}</url>
+                  <authToken>${step-ee.token}</authToken>
+                  <stepProjectName>${step-ee.project}</stepProjectName>
+                  <artifactGroupId>${ap.groupId}</artifactGroupId>
+                  <artifactId>${ap.artifactId}</artifactId>
+                  <artifactVersion>${ap.version}</artifactVersion>
+                  <artifactClassifier>${ap.classifier}</artifactClassifier>
+                  <artifactType>${ap.type}</artifactType>
+                  <library>
+                    <groupId>${lib.groupId}</groupId>
+                    <artifactId>${lib.artifactId}</artifactId>
+                    <version>${lib.version}</version>
+                  </library>
+                  <versionName>${ap.version}</versionName>
+                  <activationExpression>true</activationExpression>
+                  <async>false</async>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>ch.exense.step-enterprise</groupId>
+                <artifactId>step-maven-plugin-ee-extensions</artifactId>
+                <version>${step.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- ============================================================ -->
+    <!-- deploy-library goal                                           -->
+    <!-- ============================================================ -->
+
+    <!-- Deploy library to Step OS -->
+    <profile>
+      <id>deploy-lib-os</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>ch.exense.step</groupId>
+            <artifactId>step-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>deploy-lib-to-step-os</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>deploy-library</goal>
+                </goals>
+                <configuration>
+                  <url>${step-os.url}</url>
+                  <artifactGroupId>${lib.groupId}</artifactGroupId>
+                  <artifactId>${lib.artifactId}</artifactId>
+                  <artifactVersion>${lib.version}</artifactVersion>
+                  <managedLibraryName>${lib.artifactId}</managedLibraryName>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Deploy library to Step EE -->
+    <profile>
+      <id>deploy-lib-ee</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>ch.exense.step</groupId>
+            <artifactId>step-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>deploy-lib-to-step-ee</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>deploy-library</goal>
+                </goals>
+                <configuration>
+                  <url>${step-ee.url}</url>
+                  <authToken>${step-ee.token}</authToken>
+                  <stepProjectName>${step-ee.project}</stepProjectName>
+                  <artifactGroupId>${lib.groupId}</artifactGroupId>
+                  <artifactId>${lib.artifactId}</artifactId>
+                  <artifactVersion>${lib.version}</artifactVersion>
+                  <managedLibraryName>${lib.artifactId}</managedLibraryName>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>ch.exense.step-enterprise</groupId>
+                <artifactId>step-maven-plugin-ee-extensions</artifactId>
+                <version>${step.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
