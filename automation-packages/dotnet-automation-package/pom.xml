@@ -14,7 +14,7 @@
 
     <groupId>ch.exense.step.testing.libraries</groupId>
     <artifactId>dotnet-automation-package</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.0-MASTER-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Step Library - dotnet Automation Package</name>
@@ -157,7 +157,7 @@
 <!--                            </executionParameters>-->
 <!--                            <libArtifactGroupId>ch.exense.step.testing.libraries</libArtifactGroupId>-->
 <!--                            <libArtifactId>dotnet-keyword-library</libArtifactId>-->
-<!--                            <libArtifactVersion>0.0.0-SNAPSHOT</libArtifactVersion>-->
+<!--                            <libArtifactVersion>0.0.0-MASTER-SNAPSHOT</libArtifactVersion>-->
 <!--                        </configuration>-->
 <!--                        <goals>-->
 <!--                            <goal>execute-automation-package</goal>-->
@@ -178,7 +178,7 @@
 <!--                            &lt;!&ndash;                            <stepProjectName>${step.step-project-name}</stepProjectName>&ndash;&gt;-->
 <!--                            <libArtifactGroupId>ch.exense.step.testing.libraries</libArtifactGroupId>-->
 <!--                            <libArtifactId>dotnet-keyword-library</libArtifactId>-->
-<!--                            <libArtifactVersion>0.0.0-SNAPSHOT</libArtifactVersion>-->
+<!--                            <libArtifactVersion>0.0.0-MASTER-SNAPSHOT</libArtifactVersion>-->
 <!--                        </configuration>-->
 <!--                        <goals>-->
 <!--                            <goal>deploy-automation-package</goal>-->
