@@ -76,7 +76,7 @@
 
     <!-- Execute AP on Step OS -->
     <profile>
-      <id>execute-os</id>
+      <id>execute-ap-os</id>
       <build>
         <plugins>
           <plugin>
@@ -119,7 +119,7 @@
 
     <!-- Execute AP on Step EE -->
     <profile>
-      <id>execute-ee</id>
+      <id>execute-ap-ee</id>
       <build>
         <plugins>
           <plugin>
