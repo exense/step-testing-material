@@ -90,7 +90,7 @@
                   <goal>execute-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-os.url}</url>
+                  <!-- <url>${step-os.url}</url> -->
                   <artifactGroupId>${ap.groupId}</artifactGroupId>
                   <artifactId>${ap.artifactId}</artifactId>
                   <artifactVersion>${ap.version}</artifactVersion>
@@ -139,7 +139,7 @@
                   <goal>execute-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-ee.url}</url>
+                  <!-- <url>${step-ee.url}</url> -->
                   <authToken>${step-ee.token}</authToken>
                   <stepProjectName>${step-ee.project}</stepProjectName>
                   <artifactGroupId>${ap.groupId}</artifactGroupId>
@@ -201,7 +201,7 @@
                   <goal>deploy-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-os.url}</url>
+                  <!-- <url>${step-os.url}</url> -->
                   <artifactGroupId>${ap.groupId}</artifactGroupId>
                   <artifactId>${ap.artifactId}</artifactId>
                   <artifactVersion>${ap.version}</artifactVersion>
@@ -236,7 +236,7 @@
                   <goal>deploy-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-os.url}</url>
+                  <!-- <url>${step-os.url}</url> -->
                   <artifactGroupId>donotdelete.ch.exense.e2e.tests</artifactGroupId>
                   <artifactId>groovy-automation-package.TEST</artifactId>
                   <artifactVersion>1.0.0</artifactVersion>
@@ -267,7 +267,7 @@
                   <goal>deploy-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-os.url}</url>
+                  <!-- <url>${step-os.url}</url> -->
                   <async>false</async>
                 </configuration>
               </execution>
@@ -293,7 +293,7 @@
                   <goal>execute-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-os.url}</url>
+                  <!-- <url>${step-os.url}</url> -->
                   <artifactGroupId>donotdelete.ch.exense.e2e.tests</artifactGroupId>
                   <artifactId>groovy-automation-package.PLAN-ONLY</artifactId>
                   <artifactVersion>1.0.0</artifactVersion>
@@ -335,7 +335,7 @@
                   <goal>execute-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-os.url}</url>
+                  <!-- <url>${step-os.url}</url> -->
                   <artifactGroupId>donotdelete.ch.exense.e2e.tests</artifactGroupId>
                   <artifactId>groovy-automation-package.PLAN-ONLY</artifactId>
                   <artifactVersion>1.0.0</artifactVersion>
@@ -377,7 +377,7 @@
                   <goal>deploy-automation-package</goal>
                 </goals>
                 <configuration>
-                  <url>${step-ee.url}</url>
+                  <!-- <url>${step-ee.url}</url> -->
                   <authToken>${step-ee.token}</authToken>
                   <stepProjectName>${step-ee.project}</stepProjectName>
                   <artifactGroupId>${ap.groupId}</artifactGroupId>
@@ -428,7 +428,7 @@
                   <goal>deploy-library</goal>
                 </goals>
                 <configuration>
-                  <url>${step-os.url}</url>
+                  <!-- <url>${step-os.url}</url> -->
                   <artifactGroupId>${lib.groupId}</artifactGroupId>
                   <artifactId>${lib.artifactId}</artifactId>
                   <artifactVersion>${lib.version}</artifactVersion>
@@ -457,7 +457,7 @@
                   <goal>deploy-library</goal>
                 </goals>
                 <configuration>
-                  <url>${step-ee.url}</url>
+                  <!-- <url>${step-ee.url}</url> -->
                   <authToken>${step-ee.token}</authToken>
                   <stepProjectName>${step-ee.project}</stepProjectName>
                   <artifactGroupId>${lib.groupId}</artifactGroupId>
