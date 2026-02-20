@@ -109,6 +109,12 @@
                   <ensureExecutionSuccess>true</ensureExecutionSuccess>
                   <wrapIntoTestSet>true</wrapIntoTestSet>
                   <numberOfThreads>1</numberOfThreads>
+                  <reports>
+                    <report>
+                      <type>aggregated</type>
+                      <output>stdout,file</output>
+                    </report>
+                  </reports>
                 </configuration>
               </execution>
             </executions>
@@ -154,6 +160,12 @@
                   <ensureExecutionSuccess>true</ensureExecutionSuccess>
                   <wrapIntoTestSet>true</wrapIntoTestSet>
                   <numberOfThreads>1</numberOfThreads>
+                  <reports>
+                    <report>
+                      <type>aggregated</type>
+                      <output>stdout,file</output>
+                    </report>
+                  </reports>
                 </configuration>
               </execution>
             </executions>
