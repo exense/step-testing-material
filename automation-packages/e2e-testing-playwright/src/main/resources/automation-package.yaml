@@ -1,0 +1,20 @@
+---
+schemaVersion: 1.0.0
+name: "Playwright E2E Tests"
+plans:
+- name: "Playwright Test - Success"
+  root:
+    testCase:
+      children:
+      - callKeyword:
+          inputs:
+          - shouldFail: false
+          keyword: "Buy MacBook in OpenCart"
+- name: "Playwright Test - Failure"
+  root:
+    testCase:
+      children:
+      - callKeyword:
+          inputs:
+          - shouldFail: true
+          keyword: "Buy MacBook in OpenCart"

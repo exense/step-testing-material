@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>donotdelete.ch.exense.e2e.tests</groupId>
+	<artifactId>playwright-automation-package</artifactId>
+	<version>1.0.0</version>
+	<name>E2E Testing Playwright Material</name>
+	
+	<properties>
+		<step-api.version>1.5.0</step-api.version>
+		<playwright.version>1.50.0</playwright.version>
+		<junit.version>4.13.2</junit.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Repository settings -->
+		<nexus.staging.id>nexus-staging</nexus.staging.id>
+		<nexus.staging.url>https://nexus-enterprise-staging.stepcloud-test.ch/repository/staging-maven/</nexus.staging.url>
+	</properties>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>${nexus.staging.id}</id>
+			<url>${nexus.staging.url}</url>
+		</snapshotRepository>
+		<repository>
+			<id>${nexus.staging.id}</id>
+			<url>${nexus.staging.url}</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>${nexus.staging.id}</id>
+			<url>${nexus.staging.url}</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>ch.exense.step</groupId>
+			<artifactId>step-api-keyword</artifactId>
+			<version>${step-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		  <groupId>com.microsoft.playwright</groupId>
+		  <artifactId>playwright</artifactId>
+		  <version>${playwright.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+				<filters>
+					<filter>
+						<artifact>com.microsoft.playwright:*</artifact>
+						<excludes>
+							<exclude>driver/linux-arm64/**</exclude>
+							<exclude>driver/mac/**</exclude>
+							<exclude>driver/mac-arm64/**</exclude>
+						</excludes>
+					</filter>
+				</filters>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
