@@ -3,6 +3,7 @@ schemaVersion: 1.0.0
 name: "Playwright E2E Tests"
 plans:
 - name: "Playwright Test - Success"
+  agents: []
   root:
     testCase:
       children:
@@ -11,6 +12,7 @@ plans:
           - shouldFail: false
           keyword: "Buy MacBook in OpenCart"
 - name: "Playwright Test - Failure"
+  agents: []
   root:
     testCase:
       children:
