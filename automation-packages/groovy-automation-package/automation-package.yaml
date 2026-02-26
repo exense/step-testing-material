@@ -6,3 +6,11 @@ keywords:
       name: "Groovy Keyword"
       scriptLanguage: groovy
       scriptFile: "keywords/keyword.groovy"
+plans:
+  - name: "Groovy_Keyword_Test"
+    agents: []
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Groovy Keyword"
