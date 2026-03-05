@@ -185,7 +185,7 @@
                             </library>
                             <reports>
                                 <report>
-                                    <type>junit,aggregated</type>
+                                    <type>aggregated</type>
                                     <output>stdout</output>
                                 </report>
                             </reports>
@@ -194,12 +194,6 @@
                             <goal>execute-automation-package</goal>
                         </goals>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>ch.exense.step</groupId>
-                <artifactId>step-maven-plugin</artifactId>
-                <executions>
                     <execution>
                         <id>deploy-automation-package</id>
                         <phase>package</phase>
