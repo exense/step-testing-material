@@ -129,7 +129,7 @@
                 <executions>
                     <execution>
                         <id>deploy-automation-package</id>
-                        <phase>package</phase>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                         </configuration>
                         <goals>
@@ -138,7 +138,7 @@
                     </execution>
                     <execution>
                         <id>execute-automation-package</id>
-                        <phase>verify</phase>
+                        <phase>integration-test</phase>
                         <configuration>
                         </configuration>
                         <goals>

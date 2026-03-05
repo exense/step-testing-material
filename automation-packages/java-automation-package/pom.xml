@@ -166,7 +166,7 @@
                 <executions>
                     <execution>
                         <id>execute-automation-package</id>
-                        <phase>verify</phase>
+                        <phase>integration-test</phase>
                         <configuration>
                             <url>${step.url}</url>
 <!--                            <authToken>${step.auth-token}</authToken>-->
@@ -196,7 +196,7 @@
                     </execution>
                     <execution>
                         <id>deploy-automation-package</id>
-                        <phase>package</phase>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <versionName>1.0.0</versionName>
                             <activationExpression>env=="TEST"</activationExpression>

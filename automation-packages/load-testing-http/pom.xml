@@ -152,11 +152,20 @@
                 <executions>
                     <execution>
                         <id>execute-automation-package</id>
-                        <phase>verify</phase>
+                        <phase>integration-test</phase>
                         <configuration>
                         </configuration>
                         <goals>
                             <goal>execute-automation-package</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>deploy-automation-package</id>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                        </configuration>
+                        <goals>
+                            <goal>deploy-automation-package</goal>
                         </goals>
                     </execution>
                 </executions>
