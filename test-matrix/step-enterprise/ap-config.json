@@ -1,5 +1,14 @@
 [
   {
+    "apRelPath": "dotnet-automation-package",
+    "apName": "dotnet-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "true",
+    "useOwnMavenPom": "false",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": ""
+  },
+  {
     "apRelPath": "groovy-automation-package",
     "apName": "groovy-automation-package",
     "includePlans": "",
