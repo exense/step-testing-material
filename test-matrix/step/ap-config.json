@@ -4,44 +4,44 @@
     "apName": "groovy-automation-package",
     "includePlans": "",
     "skipLocalExec": "false",
-    "useOwnMavenPom": "false",
     "hasJavaSrc": "false",
-    "prereqLibRelPath": ""
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
   },
   {
     "apRelPath": "streaming-test-ap",
     "apName": "streaming-test-ap",
     "includePlans": "Streaming Uploads TC 01 - 5 PASS",
     "skipLocalExec": "false",
-    "useOwnMavenPom": "false",
     "hasJavaSrc": "true",
-    "prereqLibRelPath": ""
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
   },
   {
     "apRelPath": "load-testing-http",
     "apName": "load-testing-http",
     "includePlans": "",
     "skipLocalExec": "false",
-    "useOwnMavenPom": "true",
     "hasJavaSrc": "true",
-    "prereqLibRelPath": ""
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"own-pom\"}]"
   },
   {
     "apRelPath": "load-testing-jmeter",
     "apName": "distributed-load-testing-with-jmeter",
     "includePlans": "",
     "skipLocalExec": "true",
-    "useOwnMavenPom": "false",
     "hasJavaSrc": "false",
-    "prereqLibRelPath": ""
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
   },
   {
     "apRelPath": "java-automation-package",
     "apName": "java-automation-package",
     "includePlans": "",
     "skipLocalExec": "false",
-    "useOwnMavenPom": "true",
     "hasJavaSrc": "true",
-    "prereqLibRelPath": "automation-libraries/java-keyword-library"
+    "prereqLibRelPath": "automation-libraries/java-keyword-library",
+    "mavenTemplates": "[{\"templateName\": \"own-pom\"}]"
   }
 ]
