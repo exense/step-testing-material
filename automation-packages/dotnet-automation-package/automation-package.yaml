@@ -1,0 +1,15 @@
+---
+schemaVersion: 1.0.0
+name: "dotnet-automation-package"
+keywords:
+  - DotNet: 
+      name: "callDummyKeyword"
+      dllFile: "ap-dll/BasicKeywords.dll"
+plans:
+  - name: "dotnet-e2e-ap-test"
+    agents: []
+    root:
+      testCase:
+        children:
+        - callKeyword:
+            keyword: "callDummyKeyword"

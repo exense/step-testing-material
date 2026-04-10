@@ -14,7 +14,7 @@
 
     <groupId>ch.exense.step.testing.libraries</groupId>
     <artifactId>java-automation-package</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.0-MASTER-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Step Library - Java Automation Package</name>
@@ -41,7 +41,7 @@
     </scm>
 
     <properties>
-        <lib.version>0.0.0-SNAPSHOT</lib.version>
+        <lib.version>0.0.0-MASTER-SNAPSHOT</lib.version>
         <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
 
 <!--        <step-version>0.0.0-SNAPSHOT</step-version>-->
@@ -160,69 +160,61 @@
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
             <!-- Use the Step maven plugin to execute the automation package in Step -->
-<!--            <plugin>-->
-<!--                <groupId>ch.exense.step</groupId>-->
-<!--                <artifactId>step-maven-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>execute-automation-package</id>-->
-<!--                        <phase>integration-test</phase>-->
-<!--                        <configuration>-->
-<!--                            <url>${step.url}</url>-->
-<!--&lt;!&ndash;                            <authToken>${step.auth-token}</authToken>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <stepProjectName>${step.step-project-name}</stepProjectName>&ndash;&gt;-->
-<!--                            <artifactType>jar</artifactType>-->
-<!--                            <ensureExecutionSuccess>true</ensureExecutionSuccess>-->
-<!--                            <waitForExecution>true</waitForExecution>-->
-<!--                            <executionResultTimeoutS>600</executionResultTimeoutS>-->
-<!--                            <executionParameters>-->
-<!--                                <env>TEST</env>-->
-<!--                            </executionParameters>-->
-<!--                            <library>-->
-<!--                                <groupId>ch.exense.step.testing.libraries</groupId>-->
-<!--                                <artifactId>java-keyword-library</artifactId>-->
-<!--                                <version>0.0.0-SNAPSHOT</version>-->
-<!--                            </library>-->
-<!--                            <reports>-->
-<!--                                <report>-->
-<!--                                    <type>junit</type>-->
-<!--                                    <output>stdout</output>-->
-<!--                                </report>-->
-<!--                            </reports>-->
-<!--                        </configuration>-->
-<!--                        <goals>-->
-<!--                            <goal>execute-automation-package</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>ch.exense.step</groupId>-->
-<!--                <artifactId>step-maven-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>deploy-automation-package</id>-->
-<!--                        <phase>integration-test</phase>-->
-<!--                        <configuration>-->
-<!--                            <versionName>1.0.0</versionName>-->
-<!--                            <activationExpression>env=="TEST"</activationExpression>-->
-<!--                            <url>${step.url}</url>-->
-<!--&lt;!&ndash;                            <authToken>${step.auth-token}</authToken>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <stepProjectName>${step.step-project-name}</stepProjectName>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <library>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                                <groupId>ch.exense.step.testing.libraries</groupId>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                                <artifactId>java-keyword-library</artifactId>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                                <version>0.0.0-SNAPSHOT</version>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                                <path>C:\Dev\git\exense\ide\step-testing-super\step-testing-material\java-keyword-library-1.0.0.jar</path>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                                <managed>MyManagedLib</managed>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </library>&ndash;&gt;-->
-<!--                        </configuration>-->
-<!--                        <goals>-->
-<!--                            <goal>deploy-automation-package</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>ch.exense.step</groupId>
+                <artifactId>step-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>execute-automation-package</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <url>${step.url}</url>
+<!--                            <authToken>${step.auth-token}</authToken>-->
+<!--                            <stepProjectName>${step.step-project-name}</stepProjectName>-->
+                            <artifactType>jar</artifactType>
+                            <ensureExecutionSuccess>true</ensureExecutionSuccess>
+                            <waitForExecution>true</waitForExecution>
+                            <executionResultTimeoutS>600</executionResultTimeoutS>
+                            <executionParameters>
+                                <env>TEST</env>
+                            </executionParameters>
+                            <library>
+                                <groupId>ch.exense.step.testing.libraries</groupId>
+                                <artifactId>java-keyword-library</artifactId>
+                                <version>0.0.0-MASTER-SNAPSHOT</version>
+                            </library>
+                            <reports>
+                                <report>
+                                    <type>aggregated</type>
+                                    <output>stdout</output>
+                                </report>
+                            </reports>
+                        </configuration>
+                        <goals>
+                            <goal>execute-automation-package</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>deploy-automation-package</id>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <versionName>1.0.0</versionName>
+                            <activationExpression>env=="TEST"</activationExpression>
+                            <url>${step.url}</url>
+<!--                            <authToken>${step.auth-token}</authToken>-->
+<!--                            <stepProjectName>${step.step-project-name}</stepProjectName>-->
+                            <library>
+                                <groupId>ch.exense.step.testing.libraries</groupId>
+                                <artifactId>java-keyword-library</artifactId>
+                                <version>0.0.0-MASTER-SNAPSHOT</version>
+                            </library>
+                        </configuration>
+                        <goals>
+                            <goal>deploy-automation-package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

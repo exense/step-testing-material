@@ -1,0 +1,65 @@
+[
+  {
+    "apRelPath": "dotnet-automation-package",
+    "apName": "dotnet-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "true",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
+    "apRelPath": "groovy-automation-package",
+    "apName": "groovy-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "false",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
+    "apRelPath": "streaming-test-ap",
+    "apName": "streaming-test-ap",
+    "includePlans": "Streaming Uploads TC 01 - 5 PASS",
+    "skipLocalExec": "false",
+    "hasJavaSrc": "true",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
+    "apRelPath": "load-testing-http",
+    "apName": "load-testing-http",
+    "includePlans": "",
+    "skipLocalExec": "false",
+    "hasJavaSrc": "true",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"own-pom\"}]"
+  },
+  {
+    "apRelPath": "load-testing-jmeter",
+    "apName": "distributed-load-testing-with-jmeter",
+    "includePlans": "",
+    "skipLocalExec": "true",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
+    "apRelPath": "load-testing-k6",
+    "apName": "load-testing-k6-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "true",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
+    "apRelPath": "java-automation-package",
+    "apName": "java-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "false",
+    "hasJavaSrc": "true",
+    "prereqLibRelPath": "automation-libraries/java-keyword-library",
+    "mavenTemplates": "[{\"templateName\": \"own-pom\"}]"
+  }
+]

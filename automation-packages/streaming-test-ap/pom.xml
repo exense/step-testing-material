@@ -13,7 +13,7 @@
 		<maven.compiler.target>11</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<step.version>0.0.0-MASTER-SNAPSHOT</step.version>
-		<step-api.version>0.0.0-MASTER-SNAPSHOT</step-api.version>
+		<step-api.version>1.5.0</step-api.version>
 
 	</properties>
 
