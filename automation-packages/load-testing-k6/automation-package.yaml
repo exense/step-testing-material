@@ -11,17 +11,24 @@ keywords:
 plans:
   - name: "K6 - Load Testing OpenCart"
     # The agents (workers) are automatically determined and provisioned upon execution
-    agents: auto_detect
+    agents: []
     root:
       testScenario:
         children:
           # Declare a ThreadGroup that distributes the execution of the Keyword (and thus the K6 test)
           - threadGroup:
               # Distributes across 3 workers
-              users: 3
+              users: 2
               # Each worker executes the Keyword 2 times 
-              iterations: 2
+              iterations: 5
               children:
                 - callKeyword:
                     # Call the defined Keyword
                     keyword: "OpenCart Journey 10x"
+parameters:
+- key: enableLiveReporting
+  value: "false"
+- key: measuresAsAvg
+  value: "false"
+- key: debug
+  value: "attachLogs"

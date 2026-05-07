@@ -1,5 +1,5 @@
 import http from 'k6/http';
-import { check } from 'k6';
+import { check, sleep } from 'k6';
 
 export default function () {
     // Home page
@@ -9,12 +9,16 @@ export default function () {
         'response is status 200': (r) => r.status === 200,
     });
 
+    sleep(2);
+
     // Adding a Macbook
     r = http.get('https://opencart-prf.stepcloud.ch/macbook',
         { tags: { name: "OpenCart Add MacBook - Step 1" } });
     check(r, {
         'response is status 200': (r) => r.status === 200,
     });
+
+    sleep(2);
 
     r = http.post('https://opencart-prf.stepcloud.ch/index.php?route=checkout%2Fcart%2Fadd',
         {"quantity":1,"product_id":43},
@@ -25,6 +29,8 @@ export default function () {
         'response contains "success"': (r) => r.body.includes("success")
     });
 
+    sleep(2);
+
     r = http.get('https://opencart-prf.stepcloud.ch/index.php?route=common%2Fcart%2Finfo',
         { tags: { name: "OpenCart Add MacBook - Step 3" } });
 
@@ -32,6 +38,8 @@ export default function () {
         'response is status 200': (r) => r.status === 200,
         'response contains "MacBook"': (r) => r.body.includes("MacBook")
     });
+
+    sleep(2);
 
     // Checkout
     r = http.get('https://opencart-prf.stepcloud.ch/index.php?route=checkout/checkout',
@@ -42,6 +50,8 @@ export default function () {
         'response contains "Guest Shipping"': (r) => r.body.includes("Guest Shipping")
     });
 
+    sleep(2);
+
     r = http.get('https://opencart-prf.stepcloud.ch/index.php?route=checkout/guest',
         { tags: { name: "OpenCart Checkout - Step 2" } });
 
@@ -50,6 +60,8 @@ export default function () {
         'response contains "First Name"': (r) => r.body.includes("First Name")
     });
 
+    sleep(2);
+
     r = http.get('https://opencart-prf.stepcloud.ch/index.php?route=checkout/checkout/country&country_id=204',
         { tags: { name: "OpenCart Checkout - Step 3" } });
 
@@ -57,6 +69,8 @@ export default function () {
         'response is status 200': (r) => r.status === 200,
         'response contains "Ticino"': (r) => r.body.includes("Ticino")
     });
+
+    sleep(2);
 
     r = http.post('https://opencart-prf.stepcloud.ch/index.php?route=checkout/guest/save',
         {
@@ -79,6 +93,8 @@ export default function () {
         'response is status 200': (r) => r.status === 200,
         'response contains "[]"': (r) => r.body.includes("[]")
     });
+
+    sleep(2);
 
     r = http.post('https://opencart-prf.stepcloud.ch/index.php?route=checkout/payment_method/save',
         {
