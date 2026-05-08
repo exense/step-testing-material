@@ -41,8 +41,8 @@
     </scm>
 
     <properties>
-        <step.version>0.0.0-SED-4574-SNAPSHOT</step.version>
-        <step-api.version>0.0.0-SED-4574-SNAPSHOT</step-api.version>
+        <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
+        <step-api.version>0.0.0-MASTER-SNAPSHOT</step-api.version>
         <junit.version>4.13.1</junit.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -54,7 +54,7 @@
         <step.url>https://stepos-master.stepcloud-test.ch/</step.url>
 <!--        <step.url>http://localhost:8080/</step.url>-->
         <!-- For Step EE, specify your Step token (in text format) and Step project name-->
-        <step.auth-token>eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjZjc2OTU3NS02ODQ3LTQzN2ItOTBmYi04ZjBjY2Q4Y2FhZGUiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQyMDEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDEiLCJzdWIiOiJhZG1pbiIsIm5iZiI6MTc1ODIwMjE4MiwiaWF0IjoxNzU4MjAyMTgyLCJleHAiOjQ5MTE4MDIxODIsImlzTG9jYWxUb2tlbiI6dHJ1ZX0.eLUPQ3pWf9ukkcClXg_NqpxPjIbpZCi_2CLpYPQ_wN0</step.auth-token>
+        <step.auth-token>API_TOKEN</step.auth-token>
         <step.step-project-name>automation-packages</step.step-project-name>
     </properties>
 
