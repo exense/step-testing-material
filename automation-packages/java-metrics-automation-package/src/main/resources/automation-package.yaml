@@ -1,0 +1,23 @@
+---
+version: 1.0.0
+name: "java-automation-package"
+plans:
+  - name: "Test Java Metric Keyword"
+    agents: []
+    root:
+      threadGroup:
+        users: 1
+        iterations: 50
+        children:
+          - callKeyword:
+              keyword: "MetricKeyword"
+
+  - name: "Test Live Reporting Metric Keyword"
+    agents: []
+    root:
+      threadGroup:
+        users: 1
+        iterations: 1
+        children:
+          - callKeyword:
+              keyword: "LiveReportingMetricKeyword"
