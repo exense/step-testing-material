@@ -39,29 +39,66 @@ app.UseDefaultFiles(new DefaultFilesOptions { FileProvider = fileProvider });
 app.UseStaticFiles(new StaticFileOptions { FileProvider = fileProvider });
 
 app.UseSwagger();
-app.UseSwaggerUI(c => {
+app.UseSwaggerUI(c =>
+{
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "SUT API V1");
     c.RoutePrefix = "swagger"; // Swagger now at /swagger/index.html
 });
 
+// --- DELAY CONFIGURATION ---
+// Global defaults read from config (env vars DELAY_MIN_MS / DELAY_MAX_MS or appsettings.json).
+// Each endpoint can override these via optional query params minDelay / maxDelay (in ms).
+var globalMinDelayMs = app.Configuration.GetValue<int>("DELAY_MIN_MS", 0);
+var globalMaxDelayMs = app.Configuration.GetValue<int>("DELAY_MAX_MS", 0);
+
+var rng = new Random();
+
+async Task DelayAsync(int? minOverride, int? maxOverride)
+{
+    int min = minOverride ?? globalMinDelayMs;
+    int max = maxOverride ?? globalMaxDelayMs;
+    if (max <= 0) return;
+    int delay = min >= max ? min : rng.Next(min, max + 1);
+    if (delay > 0)
+        await Task.Delay(delay);
+}
+
 // --- STATE MANAGEMENT ---
 const int MAX_PRODUCTS = 1000;
 // Atomic counter for ID generation
-int _idCounter = 2; 
+int _idCounter = 2;
 // Initialize the Map directly using the Product record
+
 var products = new ConcurrentDictionary<int, Product>();
-products.TryAdd(1, new Product { Id = 1, Name = "Automation Tool", Price = 99.99 });
-products.TryAdd(2, new Product { Id = 2, Name = "Performance Script", Price = 49.50 });
+InitDefaultProducts(products);
 
 // --- ENDPOINTS ---
 
-app.MapGet("/api/products", (string? name) => 
-    string.IsNullOrEmpty(name) 
-        ? products.Values 
-        : products.Values.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase)));
-
-app.MapPost("/api/products", ([FromBody] Product newProduct) => 
+app.MapGet("/api/products", async (string? name, int? minDelay, int? maxDelay) =>
 {
+    await DelayAsync(minDelay, maxDelay);
+    return string.IsNullOrEmpty(name)
+        ? products.Values
+        : products.Values.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+});
+
+// GET a single product by ID
+app.MapGet("/api/products/{id:int}", async (int id, int? minDelay, int? maxDelay) =>
+{
+    await DelayAsync(minDelay, maxDelay);
+    if (products.TryGetValue(id, out var product))
+    {
+        return Results.Ok(product);
+    }
+    return Results.NotFound(new { message = $"Product with ID {id} not found." });
+})
+.WithName("GetProductById")
+.WithOpenApi();
+
+app.MapPost("/api/products", async ([FromBody] Product newProduct, [FromQuery] int? minDelay, [FromQuery] int? maxDelay) =>
+{
+    await DelayAsync(minDelay, maxDelay);
+
     if (products.Count >= MAX_PRODUCTS)
         return Results.BadRequest("Memory limit reached.");
 
@@ -78,37 +115,50 @@ app.MapPost("/api/products", ([FromBody] Product newProduct) =>
 
     var productToAdd = newProduct with { Id = finalId };
     products.TryAdd(finalId, productToAdd);
-    
+
     return Results.Created($"/api/products/{finalId}", productToAdd);
 });
 
-app.MapPut("/api/products/{id}", (int id, [FromBody] Product updatedProduct) => 
+app.MapPut("/api/products/{id}", async (int id, [FromBody] Product updatedProduct, [FromQuery] int? minDelay, [FromQuery] int? maxDelay) =>
 {
+    await DelayAsync(minDelay, maxDelay);
     if (!products.ContainsKey(id)) return Results.NotFound();
-    
+
     products[id] = updatedProduct with { Id = id };
     return Results.NoContent();
 });
 
-app.MapDelete("/api/products/{id}", (int id) => 
-    products.TryRemove(id, out _) ? Results.NoContent() : Results.NotFound());
+app.MapDelete("/api/products/{id}", async (int id, int? minDelay, int? maxDelay) =>
+{
+    await DelayAsync(minDelay, maxDelay);
+    return products.TryRemove(id, out _) ? Results.NoContent() : Results.NotFound();
+});
 
 // --- RESET SERVICE ---
 // Clears all products and resets the ID counter to zero
-app.MapDelete("/api/reset", () => 
+app.MapDelete("/api/reset", async (int? minDelay, int? maxDelay) =>
 {
+    await DelayAsync(minDelay, maxDelay);
     products.Clear();
-    
+    InitDefaultProducts(products);
+
     // Atomically reset the counter to 0 (or 2 if you want to re-seed)
-    Interlocked.Exchange(ref _idCounter, 0); 
-    
+    Interlocked.Exchange(ref _idCounter, 2);
+
     return Results.NoContent();
 });
 
 app.Run();
 
+static void InitDefaultProducts(ConcurrentDictionary<int, Product> products)
+{
+    products.TryAdd(1, new Product { Id = 1, Name = "Automation Tool", Price = 99.99 });
+    products.TryAdd(2, new Product { Id = 2, Name = "Performance Script", Price = 49.50 });
+}
+
 // --- MODELS ---
 // Using explicit properties ensures Swagger shows Name and Price in the UI
+
 public record Product
 {
     public int Id { get; init; }
