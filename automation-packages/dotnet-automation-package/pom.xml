@@ -43,8 +43,7 @@
     <properties>
         <step.version>0.0.0-MASTER-SNAPSHOT</step.version>
         <lib.version>1.0.0</lib.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
         <dep.mvn.deploy.version>3.0.0-M1</dep.mvn.deploy.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
