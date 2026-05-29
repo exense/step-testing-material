@@ -100,6 +100,7 @@
                     <verbose>false</verbose>
                     <compilerArgs>
                         <arg>-Xlint:none</arg>
+                        <arg>-proc:none</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
