@@ -136,6 +136,11 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-proc:none</arg>
+                    </compilerArgs>
+                </configuration>
             </plugin>
             <!-- Create an uber-jar which is the default packaging format for Step automation packages -->
             <plugin>
