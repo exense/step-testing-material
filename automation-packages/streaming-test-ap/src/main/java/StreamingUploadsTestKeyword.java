@@ -9,6 +9,7 @@ import step.streaming.client.upload.StreamingUpload;
 import step.streaming.common.StreamingResourceMetadata;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -203,11 +204,12 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
                 e.printStackTrace(errorWriter);
             }
         } finally {
-            for (Path file : files) {
-                Files.deleteIfExists(file);
-            }
+            // Stop any producer threads first, so no FileOutputStream is still writing to the temp files.
             if (scheduler != null) {
                 scheduler.shutdownNow();
+            }
+            for (Path file : files) {
+                deleteBestEffort(file);
             }
         }
         logger.info("Keyword execution finished");
@@ -223,6 +225,38 @@ public class StreamingUploadsTestKeyword extends AbstractKeyword {
         }
     }
 
+
+    /**
+     * Deletes a temp file, tolerating Windows' inability to delete a file that still has an open handle.
+     * <p>
+     * On POSIX, deleting a file with open handles succeeds (the unlink is deferred). On Windows it throws
+     * {@link java.nio.file.FileSystemException} ("used by another process"). A streaming upload that was never
+     * completed (see {@code forgetToCompleteIndexes}), or a brief release race just after completing/cancelling,
+     * can leave the source file open. We retry a few times, then fall back to {@link File#deleteOnExit()} and
+     * never let cleanup fail the keyword.
+     */
+    private void deleteBestEffort(Path file) {
+        for (int attempt = 1; attempt <= 5; attempt++) {
+            try {
+                Files.deleteIfExists(file);
+                return;
+            } catch (java.io.IOException e) {
+                if (attempt == 5) {
+                    logger.warn("Could not delete temp file {} (likely a still-open upload handle); " +
+                            "scheduling deletion on JVM exit", file, e);
+                    file.toFile().deleteOnExit();
+                    return;
+                }
+                try {
+                    Thread.sleep(200L * attempt);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    file.toFile().deleteOnExit();
+                    return;
+                }
+            }
+        }
+    }
 
     private int nextInt(SplittableRandom random, int min, int max) {
         if (min == max) return min;
