@@ -1,0 +1,23 @@
+---
+schemaVersion: 1.0.0
+name: "nodejs-automation-package"
+keywords:
+  # Node.js keyword. The project declares no dependency (no package.json), so the agent needs neither
+  # npm nor a registry to run it.
+  - Node:
+      name: "NodeJS_Echo"
+      jsfile: "node"
+plans:
+  - name: "NodeJS_Keyword_Test"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "NodeJS_Echo"
+              inputs:
+                - message: "hello from nodejs"
+              children:
+                - assert:
+                    actual: "echo"
+                    operator: EQUALS
+                    expected: "hello from nodejs"

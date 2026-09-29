@@ -1,0 +1,37 @@
+---
+schemaVersion: 1.0.0
+name: "composite-automation-package"
+keywords:
+  # Composite keyword: runs on the controller (or in the CLI JVM for a local execution), needs no agent
+  - Composite:
+      name: "Composite Keyword"
+      plan:
+        root:
+          sequence:
+            children:
+              - echo:
+                  text:
+                    expression: "input.getString('message')"
+              - return:
+                  output:
+                    - static: "composite"
+                    - echo:
+                        expression: "input.getString('message')"
+plans:
+  - name: "Composite_Keyword_Test"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Composite Keyword"
+              inputs:
+                - message: "hello from composite"
+              children:
+                - assert:
+                    actual: "static"
+                    operator: EQUALS
+                    expected: "composite"
+                - assert:
+                    actual: "echo"
+                    operator: EQUALS
+                    expected: "hello from composite"

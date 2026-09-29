@@ -1,0 +1,23 @@
+---
+schemaVersion: 1.0.0
+name: "javascript-automation-package"
+keywords:
+  # General script keyword run by the JavaScript (Nashorn) engine
+  - GeneralScript:
+      name: "JavaScript Keyword"
+      scriptLanguage: javascript
+      scriptFile: "keywords/keyword.js"
+plans:
+  - name: "JavaScript_Keyword_Test"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "JavaScript Keyword"
+              inputs:
+                - message: "hello from javascript"
+              children:
+                - assert:
+                    actual: "echo"
+                    operator: EQUALS
+                    expected: "hello from javascript"

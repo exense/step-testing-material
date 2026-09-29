@@ -30,7 +30,7 @@
     "apRelPath": "load-testing-jmeter",
     "apName": "distributed-load-testing-with-jmeter",
     "includePlans": "",
-    "skipLocalExec": "true",
+    "skipLocalExec": "false",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -43,5 +43,32 @@
     "hasJavaSrc": "true",
     "prereqLibRelPath": "automation-libraries/java-keyword-library",
     "mavenTemplates": "[{\"templateName\": \"own-pom\"}]"
+  },
+  {
+    "apRelPath": "javascript-automation-package",
+    "apName": "javascript-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "false",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
+    "apRelPath": "composite-automation-package",
+    "apName": "composite-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "false",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
+    "apRelPath": "nodejs-automation-package",
+    "apName": "nodejs-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "false",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
   }
 ]
