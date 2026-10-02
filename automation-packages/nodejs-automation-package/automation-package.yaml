@@ -1,5 +1,5 @@
 ---
-schemaVersion: 1.0.0
+version: 1.2.0
 name: "nodejs-automation-package"
 keywords:
   # Node.js keyword. The project declares no dependency (no package.json), so the agent needs neither

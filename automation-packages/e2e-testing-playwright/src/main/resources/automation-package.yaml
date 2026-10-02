@@ -1,5 +1,5 @@
 ---
-schemaVersion: 1.0.0
+version: 1.2.0
 name: "Playwright E2E Tests"
 plans:
 - name: "Playwright Test - Success"

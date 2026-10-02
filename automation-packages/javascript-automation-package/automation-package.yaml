@@ -1,5 +1,5 @@
 ---
-schemaVersion: 1.0.0
+version: 1.2.0
 name: "javascript-automation-package"
 keywords:
   # General script keyword run by the JavaScript (Nashorn) engine
