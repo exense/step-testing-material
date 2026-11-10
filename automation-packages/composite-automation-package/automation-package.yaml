@@ -1,5 +1,5 @@
 ---
-version: 1.2.0
+version: 1.3.0
 name: "composite-automation-package"
 keywords:
   # Composite keyword: runs on the controller (or in the CLI JVM for a local execution), needs no agent
