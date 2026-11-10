@@ -1,0 +1,65 @@
+---
+version: 1.3.0
+name: "reporting-automation-package"
+keywords:
+  # Composite keywords: they run on the controller (or in the CLI JVM for a local execution) and need no agent.
+  - Composite:
+      name: "Reporting Echo"
+      plan:
+        root:
+          sequence:
+            children:
+              - echo:
+                  text:
+                    expression: "input.getString('message')"
+              - return:
+                  output:
+                    - echo:
+                        expression: "input.getString('message')"
+  # Its expression cannot be evaluated: the keyword ends with a technical error, which has a stack trace
+  - Composite:
+      name: "Reporting Technical Error"
+      plan:
+        root:
+          sequence:
+            children:
+              - set:
+                  key: "broken"
+                  value:
+                    expression: "1 / 0"
+plans:
+  # Passes, with the report nodes of a keyword call and of its assertion
+  - name: "Reporting_Passing_Plan"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Reporting Echo"
+              inputs:
+                - message: "all good"
+              children:
+                - assert:
+                    actual: "echo"
+                    operator: EQUALS
+                    expected: "all good"
+  # Fails on an assertion: FAILED, the other nodes of the plan being unaffected
+  - name: "Reporting_Failing_Plan"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Reporting Echo"
+              inputs:
+                - message: "unexpected"
+              children:
+                - assert:
+                    actual: "echo"
+                    operator: EQUALS
+                    expected: "expected"
+  # Ends with a technical error raised by a keyword
+  - name: "Reporting_Technical_Error_Plan"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Reporting Technical Error"
