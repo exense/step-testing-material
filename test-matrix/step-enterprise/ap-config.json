@@ -3,7 +3,8 @@
     "apRelPath": "dotnet-automation-package",
     "apName": "dotnet-automation-package",
     "includePlans": "",
-    "skipLocalExec": "true",
+    "skipLocalExec": "false",
+    "localDotNetAgent": "true",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -13,6 +14,7 @@
     "apName": "groovy-automation-package",
     "includePlans": "",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -22,6 +24,7 @@
     "apName": "streaming-test-ap",
     "includePlans": "Streaming Uploads TC 01 - 5 PASS",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "true",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -31,6 +34,7 @@
     "apName": "load-testing-http",
     "includePlans": "",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "true",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"own-pom\"}]"
@@ -40,6 +44,7 @@
     "apName": "distributed-load-testing-with-jmeter",
     "includePlans": "",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -48,7 +53,8 @@
     "apRelPath": "load-testing-k6",
     "apName": "load-testing-k6-automation-package",
     "includePlans": "",
-    "skipLocalExec": "true",
+    "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -58,6 +64,7 @@
     "apName": "java-automation-package",
     "includePlans": "",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "true",
     "prereqLibRelPath": "automation-libraries/java-keyword-library",
     "mavenTemplates": "[{\"templateName\": \"own-pom\"}]"
@@ -67,6 +74,7 @@
     "apName": "javascript-automation-package",
     "includePlans": "",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -76,6 +84,7 @@
     "apName": "composite-automation-package",
     "includePlans": "",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
@@ -85,6 +94,7 @@
     "apName": "nodejs-automation-package",
     "includePlans": "",
     "skipLocalExec": "false",
+    "localDotNetAgent": "false",
     "hasJavaSrc": "false",
     "prereqLibRelPath": "",
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
