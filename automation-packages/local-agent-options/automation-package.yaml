@@ -1,0 +1,75 @@
+---
+version: 1.3.0
+name: "local-agent-options"
+# Plans for the checks of the CLI local execution options and provisioning (SED-3310 §4-§9),
+# used by Local_Agent_Options_CLI_Test (step-testing-cli). Only OS keyword types.
+keywords:
+  # Runs on the local Java agent
+  - GeneralScript:
+      name: "Groovy On Agent"
+      scriptLanguage: groovy
+      scriptFile: "keywords/keyword.groovy"
+  # Flagged "execute on controller": runs in the CLI JVM and needs no agent
+  - GeneralScript:
+      name: "Groovy On Controller"
+      scriptLanguage: groovy
+      scriptFile: "keywords/keyword.groovy"
+      executeLocally: true
+  # Routing criteria no local agent has: a local execution drops them, rather than matching nothing.
+  # The project declares no dependency, so the Node.js agent needs neither npm nor a registry.
+  - Node:
+      name: "Routed_Node_Echo"
+      jsfile: "node"
+      routing:
+        os: "windows-only"
+        region: "mars"
+plans:
+  - name: "Controller_Only_Plan"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Groovy On Controller"
+              children:
+                - assert:
+                    actual: "ran"
+                    operator: EQUALS
+                    expected: "groovy"
+  # Routed keyword in a loop (the routing must be reported once, not per iteration), next to a
+  # controller-side and an agent keyword
+  - name: "Mixed_Plan"
+    root:
+      testCase:
+        children:
+          - for:
+              start: 1
+              end: 3
+              children:
+                - callKeyword:
+                    keyword: "Routed_Node_Echo"
+                    inputs:
+                      - message: "routed"
+                    children:
+                      - assert:
+                          actual: "echo"
+                          operator: EQUALS
+                          expected: "routed"
+          - callKeyword:
+              keyword: "Groovy On Controller"
+          - callKeyword:
+              keyword: "Groovy On Agent"
+              children:
+                - assert:
+                    actual: "ran"
+                    operator: EQUALS
+                    expected: "groovy"
+  # The pools of a Step instance mean nothing locally: they are replaced by the local agents
+  - name: "Manual_Pools_Plan"
+    agents:
+      - pool: "pool-of-a-step-instance"
+        replicas: 3
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Groovy On Agent"
