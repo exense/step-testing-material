@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e01" activeEnvironment="Default" name="OpenCart REST Project"
+                    resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL"
+                    xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:interface xsi:type="con:RestService" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e02"
+                   wadlVersion="http://wadl.dev.java.net/2009/02" name="OpenCart" type="rest"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart=""/>
+        <con:endpoints>
+            <con:endpoint>https://opencart-prf.stepcloud.ch</con:endpoint>
+        </con:endpoints>
+        <con:resource name="Home" path="/" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e03">
+            <con:settings/>
+            <con:parameters/>
+            <con:method name="getHome" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e04" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>text/html; charset=utf-8</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                </con:representation>
+            </con:method>
+        </con:resource>
+        <con:resource name="Search" path="/index.php" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e05">
+            <con:settings/>
+            <con:parameters>
+                <con:parameter>
+                    <con:name>route</con:name>
+                    <con:value>product/search</con:value>
+                    <con:style>QUERY</con:style>
+                    <con:default>product/search</con:default>
+                </con:parameter>
+                <con:parameter>
+                    <con:name>search</con:name>
+                    <con:value>mac</con:value>
+                    <con:style>QUERY</con:style>
+                    <con:default>mac</con:default>
+                </con:parameter>
+            </con:parameters>
+            <con:method name="search" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e06" method="GET">
+                <con:settings/>
+                <con:parameters/>
+                <con:representation type="RESPONSE">
+                    <con:mediaType>text/html; charset=utf-8</con:mediaType>
+                    <con:status>200</con:status>
+                    <con:params/>
+                </con:representation>
+            </con:method>
+        </con:resource>
+    </con:interface>
+    <con:testSuite id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e07" name="OpenCart TestSuite">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e08" failOnError="true" failTestCaseOnErrors="true"
+                      keepSession="false" maxResults="0" name="Browse and search" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="restrequest" name="Open home page" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e09">
+                <con:settings/>
+                <con:config service="OpenCart" resourcePath="/" methodName="getHome"
+                            xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:restRequest name="Open home page" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e0a"
+                                     mediaType="application/json">
+                        <con:settings/>
+                        <con:endpoint>https://opencart-prf.stepcloud.ch</con:endpoint>
+                        <con:request/>
+                        <con:assertion type="Valid HTTP Status Codes" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e0b"
+                                       name="Status 200">
+                            <con:configuration>
+                                <codes>200</codes>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Simple Contains" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e0c"
+                                       name="Store title">
+                            <con:configuration>
+                                <token>&lt;title>Your Store</token>
+                                <ignoreCase>false</ignoreCase>
+                                <useRegEx>false</useRegEx>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:parameters/>
+                    </con:restRequest>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="restrequest" name="Search products" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e0d">
+                <con:settings/>
+                <con:config service="OpenCart" resourcePath="/index.php" methodName="search"
+                            xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:restRequest name="Search products" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e0e"
+                                     mediaType="application/json">
+                        <con:settings/>
+                        <con:endpoint>https://opencart-prf.stepcloud.ch</con:endpoint>
+                        <con:request/>
+                        <con:assertion type="Valid HTTP Status Codes" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e0f"
+                                       name="Status 200">
+                            <con:configuration>
+                                <codes>200</codes>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:assertion type="Simple Contains" id="6f1d2c4e-5a3b-4c8d-9e7f-1a2b3c4d5e10"
+                                       name="MacBook found">
+                            <con:configuration>
+                                <token>MacBook Air</token>
+                                <ignoreCase>false</ignoreCase>
+                                <useRegEx>false</useRegEx>
+                            </con:configuration>
+                        </con:assertion>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:parameters>
+                            <entry key="route" value="product/search" xmlns="http://eviware.com/soapui/config"/>
+                            <entry key="search" value="mac" xmlns="http://eviware.com/soapui/config"/>
+                        </con:parameters>
+                    </con:restRequest>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:properties/>
+    </con:testSuite>
+    <con:properties/>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+    <con:sensitiveInformation/>
+</con:soapui-project>

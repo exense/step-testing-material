@@ -1,0 +1,19 @@
+---
+version: 1.3.0
+name: "soapui-automation-package"
+keywords:
+  # Declare a Keyword which runs the test case "Browse and search" of the SoapUI project
+  - SoapUI:
+      name: "OpenCart Browse and Search"
+      projectFile: "soapui-projects/opencart-soapui-project.xml"
+      testSuite: "OpenCart TestSuite"
+      testCase: "Browse and search"
+plans:
+  - name: "SoapUI - OpenCart Browse and Search"
+    categories:
+      - "Functional_Test"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "OpenCart Browse and Search"

@@ -60,6 +60,16 @@
     "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
   },
   {
+    "apRelPath": "soapui-automation-package",
+    "apName": "soapui-automation-package",
+    "includePlans": "",
+    "skipLocalExec": "false",
+    "localDotNetAgent": "false",
+    "hasJavaSrc": "false",
+    "prereqLibRelPath": "",
+    "mavenTemplates": "[{\"templateName\": \"maven-ap-test-template\"}]"
+  },
+  {
     "apRelPath": "java-automation-package",
     "apName": "java-automation-package",
     "includePlans": "",
