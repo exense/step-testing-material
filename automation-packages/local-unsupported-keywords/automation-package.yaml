@@ -1,0 +1,26 @@
+---
+version: 1.3.0
+name: "local-unsupported-keywords"
+# Keyword types the CLI local execution does not support (SED-3310): each plan is expected to fail
+# with a message a user can act on. Used by Local_Unsupported_Types_CLI_Test (step-testing-cli).
+keywords:
+  # Reaches the local Java agent, which has no Silk Performer installation (agent property
+  # plugins.silk.folder). The project file is a placeholder: the handler stops before reading it.
+  - Silk:
+      name: "Silk Performer Keyword"
+      silkProjectFile: "silk/placeholder.ltz"
+      silkWorkload: "Workload1"
+plans:
+  - name: "Silk_Performer_Plan"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "Silk Performer Keyword"
+  # PDF_compare is a Keyword provided by the Step server itself, so it does not exist locally
+  - name: "PDF_Compare_Plan"
+    root:
+      testCase:
+        children:
+          - callKeyword:
+              keyword: "PDF_compare"
