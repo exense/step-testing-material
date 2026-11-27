@@ -26,7 +26,7 @@ export default function () {
 
     check(r, {
         'response is status 200': (r) => r.status === 200,
-        'response contains "success"': (r) => r.body.includes("success")
+        'response contains "success"': (r) => r.body != null && r.body.includes("success")
     });
 
     sleep(2);
@@ -36,7 +36,7 @@ export default function () {
 
     check(r, {
         'response is status 200': (r) => r.status === 200,
-        'response contains "MacBook"': (r) => r.body.includes("MacBook")
+        'response contains "MacBook"': (r) => r.body != null && r.body.includes("MacBook")
     });
 
     sleep(2);
@@ -47,7 +47,7 @@ export default function () {
 
     check(r, {
         'response is status 200': (r) => r.status === 200,
-        'response contains "Guest Shipping"': (r) => r.body.includes("Guest Shipping")
+        'response contains "Guest Shipping"': (r) => r.body != null && r.body.includes("Guest Shipping")
     });
 
     sleep(2);
@@ -57,7 +57,7 @@ export default function () {
 
     check(r, {
         'response is status 200': (r) => r.status === 200,
-        'response contains "First Name"': (r) => r.body.includes("First Name")
+        'response contains "First Name"': (r) => r.body != null && r.body.includes("First Name")
     });
 
     sleep(2);
@@ -67,7 +67,7 @@ export default function () {
 
     check(r, {
         'response is status 200': (r) => r.status === 200,
-        'response contains "Ticino"': (r) => r.body.includes("Ticino")
+        'response contains "Ticino"': (r) => r.body != null && r.body.includes("Ticino")
     });
 
     sleep(2);
@@ -91,7 +91,7 @@ export default function () {
 
     check(r, {
         'response is status 200': (r) => r.status === 200,
-        'response contains "[]"': (r) => r.body.includes("[]")
+        'response contains "[]"': (r) => r.body != null && r.body.includes("[]")
     });
 
     sleep(2);
@@ -105,6 +105,6 @@ export default function () {
 
     check(r, {
         'response is status 200': (r) => r.status === 200,
-        'response contains "Payment method required"': (r) => r.body.includes("Payment method required")
+        'response contains "Payment method required"': (r) => r.body != null && r.body.includes("Payment method required")
     });
 }
